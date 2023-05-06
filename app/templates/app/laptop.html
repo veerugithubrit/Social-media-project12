@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="{% url 'laptop' %}" class ="list-group-item list-group-item-action" aria-current="true">All laptop </a>
+        <a href="{% url 'laptopdata' 'HP' %}" class ="list-group-item list-group-item-action" aria-current="true">HP</a>
+        <a href="{% url 'laptopdata' 'DELL' %}" class ="list-group-item list-group-item-action" aria-current="true">DELL </a>
+        <a href="{% url 'laptopdata' 'below' %}" class ="list-group-item list-group-item-action" aria-current="true">belove 10000 </a>
+        <a href="{% url 'laptopdata' 'above' %}" class ="list-group-item list-group-item-action" aria-current="true">above 10000 </a>
+        <a href="{% url 'laptopdata' 'mackbook' %}" class ="list-group-item list-group-item-action" aria-current="true">Mackbook </a>
+        <a href="{% url 'laptopdata' 'acer3' %}" class ="list-group-item list-group-item-action" aria-current="true">acer3 </a>
+        <a href="{% url 'laptopdata' 'acer2' %}" class ="list-group-item list-group-item-action" aria-current="true">acer2 </a>
+        <a href="{% url 'laptopdata' 'acer' %}" class ="list-group-item list-group-item-action" aria-current="true">acer </a>
+    </div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+    {% for product in laptop %}
+    <div class="col-sm-4 text-center mb-4">
+        <a href="{% url 'product-detail' product.id%}" class="btn">
+            <div class="item"> <img src="{{product.product_image.url}}" alt=""height="300" class="">
+                <div class="fw-bold">{{product.title}}</div>
+                <div class="fw-bold">RS. {{product.discounted_price}}
+                <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small></div>
+            </div>    
+        </a>
+    </div>
+    {% endfor %}
+   laptop Product List
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
